@@ -5,9 +5,7 @@ export const ThemeDecorator = (getStory) => (
   <MantineProvider
     withGlobalStyles
     withNormalizeCSS
-    theme={{
-        colorScheme: 'dark',
-    }}
+    theme={{ colorScheme: 'dark' }}
   >{getStory()}
   </MantineProvider>
 );

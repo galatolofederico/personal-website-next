@@ -1,32 +1,63 @@
-import { Group, Avatar, Text, Accordion } from '@mantine/core';
+import { Group, ActionIcon, Text, Accordion, Badge, Grid } from '@mantine/core';
+import { IoIosPaper } from "react-icons/io";
+import { BiCodeBlock } from "react-icons/bi"
+import { ThemeIcon } from '@mantine/core';
 
+const SmallPaperBadges = (paper) => {
+  let badges = [];
+  if (paper.link) badges.push(
+    <Badge key="link-badge" sx={{ paddingLeft: 5, paddingRight: 5 }} size="lg" radius="xl">
+      <ThemeIcon color="dark"><BiCodeBlock /></ThemeIcon>
+    </Badge>
+  )
+  if (paper.code) badges.push(
+    <Badge key="code-badge" sx={{ paddingLeft: 5, paddingRight: 5 }} size="lg" radius="xl">
+      <ThemeIcon color="dark"><BiCodeBlock /></ThemeIcon>
+    </Badge>
+  )
+  if (paper.data) badges.push(
+    <Badge key="data-badge" sx={{ paddingLeft: 5, paddingRight: 5 }} size="lg" radius="xl">
+      <ThemeIcon color="dark"><BiCodeBlock /></ThemeIcon>
+    </Badge>
+  )
+  return <Group noWrap spacing="xs" >{badges}</Group>
+}
 
-const AccordionLabel = ({ label, image, description }) => {
+const AccordionLabel = (paper) => {
+  const badges = SmallPaperBadges(paper)
+  console.log(badges)
   return (
     <Group noWrap>
-      <Avatar src={image} radius="xl" size="lg" />
+      <ThemeIcon color="dark">
+        <IoIosPaper />
+      </ThemeIcon>
       <div>
-        <Text>{label}</Text>
+        <Grid grow>
+          <Grid.Col span={9}>
+            <Text>{paper.title}</Text>
+          </Grid.Col>
+          <Grid.Col span={3}>
+            {badges}
+          </Grid.Col>
+        </Grid>
         <Text size="sm" color="dimmed" weight={400}>
-          {description}
+          {paper.authors}
         </Text>
       </div>
     </Group>
   )
 }
 
-const PaperAccordionItem = ({ name, title, authors, abstract }) => {
+const PaperAccordionItem = (paper) => {
   return (
     <Accordion.Item
       label={
         <AccordionLabel
-          label={title}
-          image="https://img.icons8.com/clouds/256/000000/futurama-bender.png"
-          description={authors}
+          {...paper}
         />}
-      key={name}
+      key={paper.name}
     >
-      <Text size="sm">{abstract}</Text>
+      <Text size="sm">{paper.abstract}</Text>
     </Accordion.Item>
   )
 }
@@ -34,8 +65,8 @@ const PaperAccordionItem = ({ name, title, authors, abstract }) => {
 export const PaperAccordion = ({ papers }) => {
   const items = papers.map(e => PaperAccordionItem(e))
   return <>
-  <Accordion initialItem={-1} iconPosition="right">
-    {items}
-  </Accordion>
+    <Accordion initialItem={-1} iconPosition="right">
+      {items}
+    </Accordion>
   </>
 }
