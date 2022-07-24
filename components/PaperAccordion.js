@@ -1,26 +1,37 @@
-import { Group, ActionIcon, Text, Accordion, Badge, Grid } from '@mantine/core';
+import { Group, Tooltip, Text, Accordion, Badge, Grid } from '@mantine/core';
 import { IoIosPaper } from "react-icons/io";
 import { BiCodeBlock } from "react-icons/bi"
+import { CgFileDocument } from "react-icons/cg"
+import { FiDatabase } from "react-icons/fi"
 import { ThemeIcon } from '@mantine/core';
 
 const SmallPaperBadges = (paper) => {
   let badges = [];
   if (paper.link) badges.push(
-    <Badge key="link-badge" sx={{ paddingLeft: 5, paddingRight: 5 }} size="lg" radius="xl">
-      <ThemeIcon color="dark"><BiCodeBlock /></ThemeIcon>
-    </Badge>
+    <Tooltip
+      label="Paper available"
+      withArrow
+    >
+      <ThemeIcon variant="light" color="gray" size="sm"><CgFileDocument /></ThemeIcon>
+    </Tooltip>
   )
   if (paper.code) badges.push(
-    <Badge key="code-badge" sx={{ paddingLeft: 5, paddingRight: 5 }} size="lg" radius="xl">
-      <ThemeIcon color="dark"><BiCodeBlock /></ThemeIcon>
-    </Badge>
+    <Tooltip
+      label="Open source code available"
+      withArrow
+    >
+      <ThemeIcon variant="light" color="gray" size="sm"><BiCodeBlock /></ThemeIcon>
+    </Tooltip>
   )
   if (paper.data) badges.push(
-    <Badge key="data-badge" sx={{ paddingLeft: 5, paddingRight: 5 }} size="lg" radius="xl">
-      <ThemeIcon color="dark"><BiCodeBlock /></ThemeIcon>
-    </Badge>
+    <Tooltip
+      label="Dataset available"
+      withArrow
+    >
+      <ThemeIcon variant="light" color="gray" size="sm"><FiDatabase /></ThemeIcon>
+    </Tooltip>
   )
-  return <Group noWrap spacing="xs" >{badges}</Group>
+  return <Group noWrap spacing="xs">{badges}</Group>
 }
 
 const AccordionLabel = (paper) => {
@@ -32,14 +43,10 @@ const AccordionLabel = (paper) => {
         <IoIosPaper />
       </ThemeIcon>
       <div>
-        <Grid grow>
-          <Grid.Col span={9}>
-            <Text>{paper.title}</Text>
-          </Grid.Col>
-          <Grid.Col span={3}>
-            {badges}
-          </Grid.Col>
-        </Grid>
+        <Group noWrap>
+          <Text>{paper.title}</Text>
+          {badges}
+        </Group>
         <Text size="sm" color="dimmed" weight={400}>
           {paper.authors}
         </Text>
