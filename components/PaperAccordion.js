@@ -43,7 +43,7 @@ const AccordionLabel = (paper) => {
   return (
     <Group noWrap>
       <ThemeIcon color="dark">
-        {(paper.type == "conference") ?
+        {(paper.type == "journal") ?
         <IoIosPaper />
         :
         <HiPresentationChartBar />
