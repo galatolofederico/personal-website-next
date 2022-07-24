@@ -1,4 +1,4 @@
-import { Group, Tooltip, Text, Accordion, Badge, Grid } from '@mantine/core';
+import { Group, Tooltip, Text, Accordion, Button, Stack } from '@mantine/core';
 import { IoIosPaper } from "react-icons/io";
 import { BiCodeBlock } from "react-icons/bi"
 import { CgFileDocument } from "react-icons/cg"
@@ -71,7 +71,10 @@ const PaperAccordionItem = (paper) => {
         />}
       key={paper.name}
     >
-      <Text size="sm">{paper.abstract}</Text>
+      <Stack align="center">
+        <Text size="md" style={{paddingLeft: "20px"}}>{paper.abstract}</Text>
+        <Button>See more</Button>
+      </Stack>
     </Accordion.Item>
   )
 }
