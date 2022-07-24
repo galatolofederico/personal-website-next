@@ -42,8 +42,6 @@ const papers = [
 
 export default function Home() {
   return <>
-  <Grid justify="center" align="center">
-    <Grid.Col span={8}><PaperAccordion papers={papers} /></Grid.Col>
-  </Grid>
-</>
+    <PaperAccordion papers={papers} />
+  </>
 }
