@@ -3,6 +3,7 @@ import { IoIosPaper } from "react-icons/io";
 import { BiCodeBlock } from "react-icons/bi"
 import { CgFileDocument } from "react-icons/cg"
 import { FiDatabase } from "react-icons/fi"
+import { HiPresentationChartBar } from "react-icons/hi"
 import { ThemeIcon } from '@mantine/core';
 
 const SmallPaperBadges = (paper) => {
@@ -10,6 +11,7 @@ const SmallPaperBadges = (paper) => {
   if (paper.link) badges.push(
     <Tooltip
       label="Paper available"
+      key="paper-icon"
       withArrow
     >
       <ThemeIcon variant="light" color="gray" size="sm"><CgFileDocument /></ThemeIcon>
@@ -18,6 +20,7 @@ const SmallPaperBadges = (paper) => {
   if (paper.code) badges.push(
     <Tooltip
       label="Open source code available"
+      key="code-icon"
       withArrow
     >
       <ThemeIcon variant="light" color="gray" size="sm"><BiCodeBlock /></ThemeIcon>
@@ -26,6 +29,7 @@ const SmallPaperBadges = (paper) => {
   if (paper.data) badges.push(
     <Tooltip
       label="Dataset available"
+      key="data-icon"
       withArrow
     >
       <ThemeIcon variant="light" color="gray" size="sm"><FiDatabase /></ThemeIcon>
@@ -36,11 +40,14 @@ const SmallPaperBadges = (paper) => {
 
 const AccordionLabel = (paper) => {
   const badges = SmallPaperBadges(paper)
-  console.log(badges)
   return (
     <Group noWrap>
       <ThemeIcon color="dark">
+        {(paper.type == "conference") ?
         <IoIosPaper />
+        :
+        <HiPresentationChartBar />
+        }
       </ThemeIcon>
       <div>
         <Group noWrap>
