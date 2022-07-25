@@ -6,7 +6,7 @@ import * as mejson from "./data/me.json"
 export default {
   title: 'Components/PaperAccordion',
   component: PaperAccordion,
-};
+}
 
 export const Default = () => <>
   <Grid justify="center" align="center">

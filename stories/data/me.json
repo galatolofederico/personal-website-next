@@ -265,9 +265,7 @@
             "doi": "",
             "link": "https://pubs.galatolo.me/galatolocjunn.pdf",
             "abstract": "A major research problem of Artificial Neural Networks (NNs) is to reduce the number of model parameters. The available approaches are pruning methods, consisting in removing connections of a dense model, and natively sparse models, based on training sparse models using meta-heuristics to guarantee their topological properties. In this paper, the limits of both approaches are discussed. A novel hybrid training approach is developed and experimented, based on a linear combination of sparse unstructured NNs, which are joint because they share connections. Such NNs dynamically compete during the optimization, since the less important networks are iteratively pruned, until the most important network remains. The method, called Competitive Joint Unstructured NNs (CJUNNs), is formalized together with an efficient derivation in tensor algebra, which has been implemented and publicly released. Experimental results show its effectiveness on benchmark datasets and in comparison with structured pruning.",
-            "name": "galatolocjunn",
-            "code": "#",
-            "data": "#"
+            "name": "galatolocjunn"
         },
         {
             "title": "Zero-shot mathematical problem solving via Generative Pre-trained Transformers",
@@ -386,8 +384,7 @@
             "link": "https://pubs.galatolo.me/galatolodamagelocalization.pdf",
             "abstract": "Structural Health Monitoring (SHM) of civil structures using IoT sensors is a major emerging challenge. SHM aims to detect and identify any deviation from a reference condition, typically a damage-free baseline, to keep track of the relevant structural integrity. Machine Learning (ML) techniques have recently been employed to empower vibration-based SHM systems. Supervised ML tends to achieve better accuracy than unsupervised ML, but it requires human intervention to label data appropriately. However, labelled data related to damage conditions of civil structures are often unavailable. To overcome this limitation, a key solution is a digital twin relying on physics-based numerical models to simulate the structural response in terms of the and vibration recordings provided by IoT devices during the events of interest, such as wind or seismic excitations. This paper presents such comprehensive approach, here framed to address the tasks of damage localization, exploiting a Convolutional Neural Network (CNN). Early experimental results relevant to a pilot application involving a sample structure, show the potential of the proposed approach, as well as the reusability of the trained system in presence of varying loading scenarios.",
             "name": "galatolodamagelocalization",
-            "code": "#",
-            "data": "#"
+            "code": "#"
         }
     ],
     "advised_theses":[
