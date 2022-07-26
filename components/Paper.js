@@ -43,7 +43,7 @@ export const Paper = (paper) => {
             <CardSection withBorder inheritPadding>
                 <Grid justify="center" align="center">
                     <Grid.Col span={8}>
-                        <Stepper active={paper.doi ? 3 : 2} breakpoint="sm" size="sm">
+                        <Stepper active={paper.doi.length ? 2 : 3} breakpoint="sm" size="sm">
                             <Stepper.Step label="Paper submitted" />
                             <Stepper.Step label="Under review" />
                             <Stepper.Step label="Published" />

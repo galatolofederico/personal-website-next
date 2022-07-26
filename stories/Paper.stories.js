@@ -8,7 +8,7 @@ export default {
   component: Paper,
 }
 
-export const Conference_Unpublished = () => <>
+export const Conference_Published = () => <>
   <Grid justify="center" align="center">
     <Grid.Col span={8}>
         <Paper {...mejson.publications[mejson.publications.length-1]} />
@@ -16,14 +16,14 @@ export const Conference_Unpublished = () => <>
   </Grid>
 </>
 
-export const Journal_Unpublished = () => <>
+export const Journal_Published = () => <>
   <Grid justify="center" align="center">
     <Grid.Col span={8}>
         <Paper {...mejson.publications[mejson.publications.length-6]} />
     </Grid.Col>
   </Grid>
 </>
-export const Journal_Published = () => <>
+export const Journal_Unpublished = () => <>
 <Grid justify="center" align="center">
   <Grid.Col span={8}>
       <Paper {...mejson.publications[mejson.publications.length-10]} />
