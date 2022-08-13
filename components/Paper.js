@@ -9,23 +9,23 @@ export const Paper = (paper) => {
     let buttons = []
 
     if (paper.link) buttons.push(<>
-        <Button leftIcon={<CgFileDocument />} variant="outline">
+        <Button leftIcon={<CgFileDocument />} variant="outline" href={paper.link}>
             Read paper
         </Button>
     </>)
     if (paper.code) buttons.push(<>
-        <Button leftIcon={<BiCodeBlock />} variant="outline">
+        <Button leftIcon={<BiCodeBlock />} variant="outline" href={paper.code}>
             Checkout code
         </Button>
     </>)
     if (paper.data) buttons.push(<>
-        <Button leftIcon={<FiDatabase />} variant="outline">
-            Download Data
+        <Button leftIcon={<FiDatabase />} variant="outline" href={paper.data}>
+            Download data
         </Button>
     </>)
 
     buttons.push(<>
-        <Button leftIcon={<FaQuoteRight />} variant="outline">
+        <Button leftIcon={<FaQuoteRight />} variant="outline" >
             Cite paper
         </Button>
     </>)
