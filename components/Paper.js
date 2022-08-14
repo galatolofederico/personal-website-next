@@ -35,8 +35,8 @@ export const Paper = (paper) => {
         <Card withBorder shadow="sm" radius="md">
             <Card.Section withBorder inheritPadding py="lg">
                 <Stack spacing={0}>
-                    <Text align="center" size="xl">{paper.title}</Text>
-                    <Text align="center" color="dimmed" weight={400}>{paper.authors}</Text>
+                    <Text align="center" size="xl" style={{paddingLeft: "10px", paddingRight: "10px"}}>{paper.title}</Text>
+                    <Text align="center" color="dimmed" weight={400} style={{paddingLeft: "10px", paddingRight: "10px"}}>{paper.authors}</Text>
                 </Stack>
             </Card.Section>
 
