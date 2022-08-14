@@ -14,13 +14,13 @@ export const ProjectsTable = ({projects}) => {
         (new Date(a.date.year, a.date.month, a.date.day))
     )
     const rows = projects.map((project) => {
-        const badges = project.tags.map(tag => (<Badge  size="xs">{tag}</Badge>))
+        const badges = project.tags.map(tag => (<Badge style={{marginRight: "3px", marginLeft: "3px"}} size="xs">{tag}</Badge> ))
         const handle = () => {
             window.open(project.link)
         }
         return <>
             <tr key={project.name} onClick={handle}>
-                <td><Group spacing="xs"> <Text weight={700}>{project.title}</Text> {badges}</Group></td>
+                <td><Text weight={700}>{project.title} {badges}</Text></td>
                 <td>{project.description}</td>
             </tr>
         </>
