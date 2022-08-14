@@ -10,6 +10,6 @@ export default {
 
 export const Default = () => <>
   <Grid justify="center" align="center">
-    <Grid.Col span={8}><LecturesTable lectures={mejson.lectures} /></Grid.Col>
+    <Grid.Col md={8} sm={12}><LecturesTable lectures={mejson.lectures} /></Grid.Col>
   </Grid>
 </>

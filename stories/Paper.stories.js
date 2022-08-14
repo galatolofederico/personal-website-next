@@ -10,7 +10,7 @@ export default {
 
 export const Conference_Published = () => <>
   <Grid justify="center" align="center">
-    <Grid.Col span={8}>
+    <Grid.Col md={8} sm={12}>
         <Paper {...mejson.publications[mejson.publications.length-1]} />
     </Grid.Col>
   </Grid>
@@ -18,14 +18,14 @@ export const Conference_Published = () => <>
 
 export const Journal_Published = () => <>
   <Grid justify="center" align="center">
-    <Grid.Col span={8}>
+    <Grid.Col md={8} sm={12}>
         <Paper {...mejson.publications[mejson.publications.length-6]} />
     </Grid.Col>
   </Grid>
 </>
 export const Journal_Unpublished = () => <>
 <Grid justify="center" align="center">
-  <Grid.Col span={8}>
+  <Grid.Col md={8} sm={12}>
       <Paper {...mejson.publications[mejson.publications.length-10]} />
   </Grid.Col>
 </Grid>
