@@ -1,4 +1,5 @@
-import { Card, Stack, Group, Text, Stepper, CardSection, Grid, Button } from '@mantine/core';
+import { Card, Stack, Group, Text, Stepper, CardSection, Grid, Button, Center } from '@mantine/core';
+import React, { useState, useEffect } from 'react';
 
 import { BiCodeBlock } from "react-icons/bi"
 import { CgFileDocument } from "react-icons/cg"
@@ -6,6 +7,16 @@ import { FiDatabase } from "react-icons/fi"
 import { FaQuoteRight } from "react-icons/fa"
 
 export const Paper = (paper) => {
+    const [bigScreen, setBigScreen] = useState(
+        window.matchMedia("(min-width: 768px)").matches
+    )
+
+    useEffect(() => {
+        window
+            .matchMedia("(min-width: 768px)")
+            .addEventListener('change', e => setBigScreen(e.matches));
+    }, []);
+
     let buttons = []
 
     if (paper.link) buttons.push(<>
@@ -43,11 +54,21 @@ export const Paper = (paper) => {
             <CardSection withBorder inheritPadding>
                 <Grid justify="center" align="center">
                     <Grid.Col span={8}>
-                        <Stepper active={paper.doi.length ? 3 : 2} breakpoint="sm" size="sm">
-                            <Stepper.Step label="Paper submitted" />
-                            <Stepper.Step label="Under review" />
-                            <Stepper.Step label="Published" />
-                        </Stepper>
+                        {bigScreen ? 
+                        <Stepper active={paper.doi.length ? 3 : 2} breakpoint="sm" size="sm" orientation="horizontal">
+                           <Stepper.Step label="Paper submitted" />
+                           <Stepper.Step label="Under review" />
+                           <Stepper.Step label="Published" />
+                       </Stepper>
+                        :
+                        <Center>
+                            <Stepper active={paper.doi.length ? 3 : 2} breakpoint="sm" size="sm" orientation="vertical">
+                                <Stepper.Step label="Paper submitted" />
+                                <Stepper.Step label="Under review" />
+                                <Stepper.Step label="Published" />
+                            </Stepper>
+                        </Center>
+                        }
                     </Grid.Col>
                 </Grid>
             </CardSection>
