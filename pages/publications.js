@@ -1,4 +1,4 @@
-import { Accordion, Grid, Stack } from '@mantine/core';
+import { Grid, Stack } from '@mantine/core';
 import { PaperAccordion } from '../components/PaperAccordion';
 import { Navbar } from '../components/Navbar';
 import fsPromises from 'fs/promises';
@@ -16,8 +16,8 @@ export default function Publications({publications}) {
 }
 
 export async function getStaticProps() {
-  const mejson_path = path.join(process.cwd(), "./public/me.json/me.json");
-  const mejson = JSON.parse(await fsPromises.readFile(mejson_path));
+  const mejson_path = path.join(process.cwd(), "./public/me.json/me.json")
+  const mejson = JSON.parse(await fsPromises.readFile(mejson_path))
 
   return {
     props: {

@@ -5,6 +5,7 @@ import { CgFileDocument } from "react-icons/cg"
 import { FiDatabase } from "react-icons/fi"
 import { HiPresentationChartBar } from "react-icons/hi"
 import { ThemeIcon } from '@mantine/core';
+import Link from 'next/link';
 
 const SmallPaperBadges = (paper) => {
   let badges = [];
@@ -73,7 +74,9 @@ const PaperAccordionItem = (paper) => {
     >
       <Stack align="center">
         <Text size="md" style={{paddingLeft: "20px"}}>{paper.abstract}</Text>
-        <Button>See more</Button>
+        <Link href={`publication/${paper.name}`}>
+          <Button>See more</Button>
+        </Link>
       </Stack>
     </Accordion.Item>
   )
