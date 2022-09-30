@@ -30,14 +30,18 @@ export const Paper = (paper) => {
         </Link>
     </>)
     if (paper.code) buttons.push(<>
-        <Button leftIcon={<BiCodeBlock />} variant="outline" href={paper.code}>
-            Checkout code
-        </Button>
+        <Link href={paper.code} passHref>
+            <Button leftIcon={<BiCodeBlock />} variant="outline" href={paper.code}>
+                Checkout code
+            </Button>
+        </Link>
     </>)
     if (paper.data) buttons.push(<>
-        <Button leftIcon={<FiDatabase />} variant="outline" href={paper.data}>
-            Download data
-        </Button>
+        <Link href={paper.data} passHref>
+            <Button leftIcon={<FiDatabase />} variant="outline" href={paper.data}>
+                Download data
+            </Button>
+        </Link>
     </>)
 
     buttons.push(<>
