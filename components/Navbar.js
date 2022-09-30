@@ -115,7 +115,7 @@ export function Navbar() {
     ))
         
     return (
-        <Header height={HEADER_HEIGHT} mb={120} className={classes.root}>
+        <Header height={HEADER_HEIGHT} mb={10} className={classes.root}>
         <Container className={classes.header}>
         <Text>Logo</Text>
         <Group spacing={5} className={classes.links}>
