@@ -8,14 +8,16 @@ import { FiDatabase } from "react-icons/fi"
 import { FaQuoteRight } from "react-icons/fa"
 
 export const Paper = (paper) => {
-    const [bigScreen, setBigScreen] = useState(
-        window.matchMedia("(min-width: 768px)").matches
-    )
+    const [bigScreen, setBigScreen] = useState(false)
+
+    useEffect(() => {
+        setBigScreen(window.matchMedia("(min-width: 768px)").matches)
+    }, [])
 
     useEffect(() => {
         window
-            .matchMedia("(min-width: 768px)")
-            .addEventListener('change', e => setBigScreen(e.matches));
+        .matchMedia("(min-width: 768px)")
+        .addEventListener('change', e => setBigScreen(e.matches));
     }, []);
 
     let buttons = []
