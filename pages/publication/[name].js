@@ -28,7 +28,6 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
-  console.log(context)
   const mejson_path = path.join(process.cwd(), "./public/me.json/me.json")
   const mejson = JSON.parse(await fsPromises.readFile(mejson_path))
   const publication = mejson.publications.filter(p => p.name == context.params.name)[0]
