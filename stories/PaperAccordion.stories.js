@@ -1,7 +1,7 @@
 import { Accordion, Grid } from '@mantine/core';
 import { PaperAccordion } from '../components/PaperAccordion';
 
-import * as mejson from "./data/me.json"
+import * as mejson from "../public/me.json/me.json"
 
 export default {
   title: 'Components/PaperAccordion',
