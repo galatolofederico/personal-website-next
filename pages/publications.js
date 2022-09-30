@@ -1,15 +1,27 @@
 import { Accordion, Grid, Stack } from '@mantine/core';
 import { PaperAccordion } from '../components/PaperAccordion';
 import { Navbar } from '../components/Navbar';
-import * as mejson from "../public/me.json/me.json"
+import fsPromises from 'fs/promises';
+import path from 'path';
 
-export default function Publications() {
+export default function Publications({publications}) {
   return <>
     <Stack>
       <Navbar />
       <Grid justify="center" align="center">
-          <Grid.Col md={8} sm={12}><PaperAccordion papers={mejson.publications} /></Grid.Col>
+          <Grid.Col md={8} sm={12}><PaperAccordion papers={publications} /></Grid.Col>
       </Grid>
     </Stack>
   </>
+}
+
+export async function getStaticProps() {
+  const mejson_path = path.join(process.cwd(), "./public/me.json/me.json");
+  const mejson = JSON.parse(await fsPromises.readFile(mejson_path));
+
+  return {
+    props: {
+      publications: mejson.publications
+    }
+  }
 }
