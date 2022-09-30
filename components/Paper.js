@@ -1,5 +1,6 @@
 import { Card, Stack, Group, Text, Stepper, CardSection, Grid, Button, Center } from '@mantine/core';
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 import { BiCodeBlock } from "react-icons/bi"
 import { CgFileDocument } from "react-icons/cg"
@@ -20,9 +21,11 @@ export const Paper = (paper) => {
     let buttons = []
 
     if (paper.link) buttons.push(<>
-        <Button leftIcon={<CgFileDocument />} variant="outline" href={paper.link}>
-            Read paper
-        </Button>
+        <Link href={paper.link} passHref>
+            <Button leftIcon={<CgFileDocument />} variant="outline">
+                Read paper
+            </Button>
+        </Link>
     </>)
     if (paper.code) buttons.push(<>
         <Button leftIcon={<BiCodeBlock />} variant="outline" href={paper.code}>
