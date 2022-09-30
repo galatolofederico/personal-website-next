@@ -1,0 +1,4 @@
+[submodule "public/me.json"]
+	path = public/me.json
+	url = git@github.com:galatolofederico/me.json.git
+	branch = master
