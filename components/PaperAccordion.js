@@ -15,7 +15,7 @@ const SmallPaperBadges = (paper) => {
       key="paper-icon"
       withArrow
     >
-      <ThemeIcon variant="light" color="gray" size="sm"><CgFileDocument /></ThemeIcon>
+      <ThemeIcon variant="light" size="sm"><CgFileDocument /></ThemeIcon>
     </Tooltip>
   )
   if (paper.code) badges.push(
@@ -24,7 +24,7 @@ const SmallPaperBadges = (paper) => {
       key="code-icon"
       withArrow
     >
-      <ThemeIcon variant="light" color="gray" size="sm"><BiCodeBlock /></ThemeIcon>
+      <ThemeIcon variant="light" size="sm"><BiCodeBlock /></ThemeIcon>
     </Tooltip>
   )
   if (paper.data) badges.push(
@@ -33,7 +33,7 @@ const SmallPaperBadges = (paper) => {
       key="data-icon"
       withArrow
     >
-      <ThemeIcon variant="light" color="gray" size="sm"><FiDatabase /></ThemeIcon>
+      <ThemeIcon variant="light" size="sm"><FiDatabase /></ThemeIcon>
     </Tooltip>
   )
   return <Group noWrap spacing="xs">{badges}</Group>
@@ -43,7 +43,7 @@ const AccordionLabel = (paper) => {
   const badges = SmallPaperBadges(paper)
   return (
     <Group noWrap>
-      <ThemeIcon color="dark">
+      <ThemeIcon variant="outline">
         {(paper.type == "journal") ?
         <IoIosPaper />
         :
@@ -75,7 +75,7 @@ const PaperAccordionItem = (paper) => {
       <Stack align="center">
         <Text size="md" style={{paddingLeft: "20px"}}>{paper.abstract}</Text>
         <Link href={`publication/${paper.name}`}>
-          <Button>See more</Button>
+          <Button variant="outline">See more</Button>
         </Link>
       </Stack>
     </Accordion.Item>

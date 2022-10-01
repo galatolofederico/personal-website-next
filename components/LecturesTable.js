@@ -21,7 +21,7 @@ export const LecturesTable = ({ lectures }) => {
         (new Date(a.date.year, a.date.month, a.date.day))
     )
     const rows = lectures.map((lecture) => {
-        const buttons = lecture.resources.map((r, i) => (<Button key={i} size="xs" compact onClick={() => window.open(r.link)}>{r.name}</Button>))
+        const buttons = lecture.resources.map((r, i) => (<Button key={i} size="xs" compact onClick={() => window.open(r.link)} variant="outline">{r.name}</Button>))
         return (
             <tr key={lecture.name}>
                 <td><Text weight={700}>{lecture.title}</Text></td>
