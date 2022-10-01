@@ -81,7 +81,7 @@ function ContactIcons({digitalidentity}){
   </>
 }
 
-function RecentElements({elements, limit=3, title, link}){
+function RecentElements({elements, limit=3, title, element_link, more_link}){
   elements = elements.sort((a, b) => 
     (new Date(b.date.year, b.date.month, b.date.day))
     -
@@ -89,7 +89,7 @@ function RecentElements({elements, limit=3, title, link}){
   ).slice(0, limit)
   
   let list = elements.map((e, i) => (
-    <Link key={i} href={link(e)} passHref>
+    <Link key={i} href={element_link(e)} passHref>
       <Text align="center" component="a">{e.title}</Text>
     </Link>
   ))
@@ -105,9 +105,11 @@ function RecentElements({elements, limit=3, title, link}){
       </ScrollArea>
 
       <Center>
-        <Button variant="outline" mt="xl" radius="md">
-          See more
-        </Button>
+        <Link href={more_link} pass>
+          <Button variant="outline" mt="xl" radius="md">
+            See more
+          </Button>
+        </Link>
       </Center>
     </Card>
 </>
@@ -125,7 +127,8 @@ function Home({anagraphic, digitalidentity, publications, projects, lectures}){
         <RecentElements
           elements={publications}
           title="Recent publications"
-          link={e => "/publication/"+e.name}
+          more_link="/publications"
+          element_link={e => "/publication/"+e.name}
         />
       </Grid.Col>
       <Grid.Col md={3} span={10}>
@@ -133,14 +136,16 @@ function Home({anagraphic, digitalidentity, publications, projects, lectures}){
           elements={projects}
           title="Recent projects"
           limit={4}
-          link={e => e.link}
+          more_link="/projects"
+          element_link={e => e.link}
         />
       </Grid.Col>
       <Grid.Col md={3} span={10}>
         <RecentElements
           elements={lectures}
           title="Recent lectures"
-          link={e => "/lectures"}
+          more_link="/lectures"
+          element_link={e => "/lectures"}
         />
       </Grid.Col>
     </Grid>
