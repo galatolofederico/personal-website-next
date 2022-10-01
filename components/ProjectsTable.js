@@ -14,16 +14,16 @@ export const ProjectsTable = ({projects}) => {
         (new Date(a.date.year, a.date.month, a.date.day))
     )
     const rows = projects.map((project) => {
-        const badges = project.tags.map(tag => (<Badge style={{marginRight: "3px", marginLeft: "3px"}} size="xs">{tag}</Badge> ))
+        const badges = project.tags.map((tag, i) => (<Badge key={i} style={{marginRight: "3px", marginLeft: "3px"}} size="xs">{tag}</Badge> ))
         const handle = () => {
             window.open(project.link)
         }
-        return <>
+        return (
             <tr key={project.name} onClick={handle}>
                 <td><Text weight={700}>{project.title} {badges}</Text></td>
                 <td>{project.description}</td>
             </tr>
-        </>
+        )
     })
 
     return (
