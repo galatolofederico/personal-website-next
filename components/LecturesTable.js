@@ -20,7 +20,7 @@ export const LecturesTable = ({ lectures }) => {
     )
     const rows = lectures.map((lecture) => {
         const buttons = lecture.resources.map(r => (<Button size="xs" compact onClick={() => window.open(r.link)}>{r.name}</Button>))
-        return <>
+        return (
             <tr key={lecture.name}>
                 <td><Text weight={700}>{lecture.title}</Text></td>
                 {bigScreen ?
@@ -34,7 +34,7 @@ export const LecturesTable = ({ lectures }) => {
                 }
                 <td><Group >{buttons}</Group></td>
             </tr>
-        </>
+        )
     })
 
     return (
