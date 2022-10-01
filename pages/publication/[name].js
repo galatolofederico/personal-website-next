@@ -18,7 +18,7 @@ export default function Publication({publication}) {
 }
 
 export async function getStaticPaths() {
-  const mejson_path = path.join(process.cwd(), "./public/me.json/me.json")
+  const mejson_path = path.join(process.cwd(), "./me.json/me.json")
   const mejson = JSON.parse(await fsPromises.readFile(mejson_path))
   const paths = mejson.publications.map(p => {return {params: {name: p.name}}})
   return {
@@ -28,7 +28,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
-  const mejson_path = path.join(process.cwd(), "./public/me.json/me.json")
+  const mejson_path = path.join(process.cwd(), "./me.json/me.json")
   const mejson = JSON.parse(await fsPromises.readFile(mejson_path))
   const publication = mejson.publications.filter(p => p.name == context.params.name)[0]
 

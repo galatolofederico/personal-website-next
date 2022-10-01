@@ -16,7 +16,7 @@ export default function Theses({theses}) {
 }
 
 export async function getStaticProps() {
-  const mejson_path = path.join(process.cwd(), "./public/me.json/me.json")
+  const mejson_path = path.join(process.cwd(), "./me.json/me.json")
   const mejson = JSON.parse(await fsPromises.readFile(mejson_path))
 
   return {

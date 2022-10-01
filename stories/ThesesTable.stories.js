@@ -1,7 +1,7 @@
 import { Accordion, Grid } from '@mantine/core';
 import { ThesesTable } from '../components/ThesesTable';
 
-import * as mejson from "../public/me.json/me.json"
+import * as mejson from "../me.json/me.json"
 
 export default {
   title: 'Components/ThesesTable',
