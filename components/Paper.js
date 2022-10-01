@@ -22,45 +22,45 @@ export const Paper = (paper) => {
 
     let buttons = []
 
-    if (paper.link) buttons.push(<>
-        <Link href={paper.link} passHref>
+    if (paper.link) buttons.push((
+        <Link key="paper-button" href={paper.link} passHref>
             <Button leftIcon={<CgFileDocument />} variant="outline">
                 Read paper
             </Button>
         </Link>
-    </>)
-    if (paper.code) buttons.push(<>
-        <Link href={paper.code} passHref>
+    ))
+    if (paper.code) buttons.push((
+        <Link key="code-button" href={paper.code} passHref>
             <Button leftIcon={<BiCodeBlock />} variant="outline" href={paper.code}>
                 Checkout code
             </Button>
         </Link>
-    </>)
-    if (paper.data) buttons.push(<>
-        <Link href={paper.data} passHref>
+    ))
+    if (paper.data) buttons.push((
+        <Link key="data-button" href={paper.data} passHref>
             <Button leftIcon={<FiDatabase />} variant="outline" href={paper.data}>
                 Download data
             </Button>
         </Link>
-    </>)
+    ))
 
-    buttons.push(<>
-        <Button leftIcon={<FaQuoteRight />} variant="outline" >
+    buttons.push((
+        <Button key="cite-button" leftIcon={<FaQuoteRight />} variant="outline" >
             Cite paper
         </Button>
-    </>)
+    ))
 
 
     return <>
-        <Card withBorder shadow="sm" radius="md">
-            <Card.Section withBorder inheritPadding py="lg">
+        <Card shadow="sm" radius="md">
+            <Card.Section py="lg">
                 <Stack spacing={0}>
                     <Text align="center" size="xl" style={{paddingLeft: "10px", paddingRight: "10px"}}>{paper.title}</Text>
                     <Text align="center" color="dimmed" weight={400} style={{paddingLeft: "10px", paddingRight: "10px"}}>{paper.authors}</Text>
                 </Stack>
             </Card.Section>
 
-            <CardSection withBorder inheritPadding>
+            <CardSection>
                 <Grid justify="center" align="center">
                     <Grid.Col span={8}>
                         {bigScreen ? 
@@ -82,11 +82,11 @@ export const Paper = (paper) => {
                 </Grid>
             </CardSection>
 
-            <CardSection withBorder inheritPadding py="lg">
+            <CardSection py="lg">
                 <Text style={{ paddingRight: "3%", paddingLeft: "3%" }}>{paper.abstract}</Text>
             </CardSection>
 
-            <CardSection withBorder inheritPadding py="lg">
+            <CardSection py="lg">
                 <Group position="center" spacing="xl">
                     {buttons}
                 </Group>
