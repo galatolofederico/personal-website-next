@@ -6,15 +6,15 @@ export const ThesesTable = ({ theses }) => {
         -
         (new Date(a.date.year, a.date.month, a.date.day))
     )
-    const rows = theses.map((thesis) => {
-        return <>
-            <tr key={thesis.title}>
+    const rows = theses.map((thesis, i) => {
+        return (
+            <tr key={i}>
                 <td><Text weight={700}>{thesis.title} <Badge>{thesis.type}</Badge></Text></td>
                 <td>{thesis.author}</td>
             </tr>
-        </>
+        )
     })
-
+    
     return (
         <Table fontSize="md" highlightOnHover>
             <tbody>{rows}</tbody>
