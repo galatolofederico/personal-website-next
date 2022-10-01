@@ -117,7 +117,11 @@ export function Navbar() {
     return (
         <Header height={HEADER_HEIGHT} mb={10} className={classes.root}>
         <Container className={classes.header}>
-        <Text>Logo</Text>
+        <Link href="/"key="home-link" passHref>
+            <a className={classes.link}>
+            Home
+            </a>
+        </Link>
         <Group spacing={5} className={classes.links}>
         {items}
         </Group>
