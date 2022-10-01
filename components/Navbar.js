@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { createStyles, Header, Container, Group, Burger, Paper, Transition, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import Link from 'next/link';
-
+import {useRouter} from 'next/router';
 
 const HEADER_HEIGHT = 60;
 
@@ -79,39 +79,39 @@ const useStyles = createStyles((theme) => ({
 export function Navbar() {
     const links = [
         {
-            "link": "publications",
+            "link": "/publications",
             "label": "Publications"
         },
         {
-            "link": "theses",
+            "link": "/theses",
             "label": "Advised Theses"
         },
         {
-            "link": "projects",
+            "link": "/projects",
             "label": "Projects"
         },
         {
-            "link": "lectures",
+            "link": "/lectures",
             "label": "Lectures"
         }
     ]
     const [opened, { toggle, close }] = useDisclosure(false)
-    const [active, setActive] = useState(links[0].link)
+    const [active, setActive] = useState()
     const { classes, cx } = useStyles()
+    const router = useRouter()
     
+    useEffect(() => {
+        for(let link of links){
+            if(link.link == router.pathname) setActive(link.link)
+        }
+    }, [])
+
     const items = links.map((link) => (
-        <a
-        key={link.label}
-        href={link.link}
-        className={cx(classes.link, { [classes.linkActive]: active === link.link })}
-        onClick={(event) => {
-            event.preventDefault();
-            setActive(link.link);
-            close();
-        }}
-        >
-        {link.label}
-        </a>
+        <Link href={link.link} key={link.label} passHref>
+            <a className={cx(classes.link, { [classes.linkActive]: active === link.link })}>
+            {link.label}
+            </a>
+        </Link>
     ))
         
     return (
