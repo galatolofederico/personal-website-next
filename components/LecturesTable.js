@@ -2,9 +2,11 @@ import { Button, Group, Stack, Table, Text } from '@mantine/core';
 import React, { useState, useEffect } from 'react';
 
 export const LecturesTable = ({ lectures }) => {
-    const [bigScreen, setBigScreen] = useState(
-        window.matchMedia("(min-width: 768px)").matches
-    )
+    const [bigScreen, setBigScreen] = useState(false)
+
+    useEffect(() => {
+        setBigScreen(window.matchMedia("(min-width: 768px)").matches)
+    }, [])
 
     useEffect(() => {
         window
@@ -19,7 +21,7 @@ export const LecturesTable = ({ lectures }) => {
         (new Date(a.date.year, a.date.month, a.date.day))
     )
     const rows = lectures.map((lecture) => {
-        const buttons = lecture.resources.map(r => (<Button size="xs" compact onClick={() => window.open(r.link)}>{r.name}</Button>))
+        const buttons = lecture.resources.map((r, i) => (<Button key={i} size="xs" compact onClick={() => window.open(r.link)}>{r.name}</Button>))
         return (
             <tr key={lecture.name}>
                 <td><Text weight={700}>{lecture.title}</Text></td>
