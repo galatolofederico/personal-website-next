@@ -8,7 +8,7 @@ export const ThesesTable = ({ theses }) => {
     )
     const rows = theses.map((thesis) => {
         return <>
-            <tr key={thesis.name}>
+            <tr key={thesis.title}>
                 <td><Text weight={700}>{thesis.title} <Badge>{thesis.type}</Badge></Text></td>
                 <td>{thesis.author}</td>
             </tr>
