@@ -1,4 +1,4 @@
-import { Grid, Stack, Group, Center, Image, Text, ActionIcon, Tooltip } from '@mantine/core';
+import { Grid, Stack, Group, Center, Image, Text, ActionIcon, Tooltip, Card, Button,  Space, ScrollArea } from '@mantine/core';
 import { FaInstagram, FaLinkedin, FaPhone, FaQuestionCircle, FaTelegram } from "react-icons/fa"
 import { ImGithub } from "react-icons/im"
 import { Navbar } from '../components/Navbar';
@@ -48,7 +48,7 @@ function ContactIcons({digitalidentity}){
     if(profile.platform == "LinkedIn") icon = <FaLinkedin {...props}/>
     if(profile.platform == "Instagram") icon = <FaInstagram {...props}/>
 
-    return  <>
+    return  (
     <Tooltip
       label={profile.description}
       key={profile.platform}
@@ -60,7 +60,7 @@ function ContactIcons({digitalidentity}){
         </ActionIcon>
       </Link>
     </Tooltip>
-  </>
+   )
   })
 
   let icons = [];
@@ -81,12 +81,69 @@ function ContactIcons({digitalidentity}){
   </>
 }
 
+function RecentElements({elements, limit=3, title, link}){
+  elements = elements.sort((a, b) => 
+    (new Date(b.date.year, b.date.month, b.date.day))
+    -
+    (new Date(a.date.year, a.date.month, a.date.day))
+  ).slice(0, limit)
+  
+  let list = elements.map((e, i) => (
+    <Link key={i} href={link(e)} passHref>
+      <Text align="center" component="a">{e.title}</Text>
+    </Link>
+  ))
+
+  return <>
+    <Card shadow="sm" radius="md" withBorder>
+      <Text weight={500} mb="xs" align="center" size="xl">{title}</Text>
+
+      <ScrollArea style={{ height: 150 }}>
+        <Stack>
+          {list}
+        </Stack>
+      </ScrollArea>
+
+      <Center>
+        <Button variant="outline" mt="xl" radius="md">
+          See more
+        </Button>
+      </Center>
+    </Card>
+</>
+}
+
 function Home({anagraphic, digitalidentity, publications, projects, lectures}){
   return <>
   <Stack>
     <Picture anagraphic={anagraphic}/>
     <Name anagraphic={anagraphic} />
     <ContactIcons digitalidentity={digitalidentity} />
+    <Space h="xl" />
+    <Grid justify="center" align="center" gutter="xl">
+      <Grid.Col md={3} span={10}>
+        <RecentElements
+          elements={publications}
+          title="Recent publications"
+          link={e => "/publication/"+e.name}
+        />
+      </Grid.Col>
+      <Grid.Col md={3} span={10}>
+        <RecentElements
+          elements={projects}
+          title="Recent projects"
+          limit={4}
+          link={e => e.link}
+        />
+      </Grid.Col>
+      <Grid.Col md={3} span={10}>
+        <RecentElements
+          elements={lectures}
+          title="Recent lectures"
+          link={e => "/lectures"}
+        />
+      </Grid.Col>
+    </Grid>
   </Stack>
 </>
 }
