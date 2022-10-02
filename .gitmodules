@@ -1,4 +1,0 @@
-[submodule "me.json"]
-	path = me.json
-	url = git@github.com:galatolofederico/me.json.git
-	branch = master
