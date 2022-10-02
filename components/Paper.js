@@ -34,7 +34,6 @@ function buildAPA(paper){
 export const Paper = (paper) => {
     const [bigScreen, setBigScreen] = useState(false)
     const [showCitation, setShowCitation] = useState(false)
-    const clipboard = useClipboard({ timeout: 500 })
 
     useEffect(() => {
         setBigScreen(window.matchMedia("(min-width: 768px)").matches)
@@ -77,40 +76,39 @@ export const Paper = (paper) => {
     ))
 
 
-    function CodePreview({code}){
-        return <>
-            <Tooltip label={clipboard.copied ? 'Copied' : 'Copy'} withArrow position="right">
-                <ActionIcon color={clipboard.copied ? 'teal' : 'gray'} onClick={() => clipboard.copy(code)}>
-                    {clipboard.copied ? <FaCheck size={16} /> : <FaCopy size={16} />}
-                </ActionIcon>
-            </Tooltip>
+    function Citation({text, citation}){
+        const clipboard = useClipboard({ timeout: 500 })
+        return <Stack  mt="xl">
+            <Group noWrap spacing={2}>
+                <Text>{text}</Text>
+                <Tooltip
+                label={clipboard.copied ? 'Copied' : 'Copy'}
+                withArrow
+                position="right"
+                arrowSize={6}
+                >
+                    <ActionIcon color={clipboard.copied ? 'teal' : 'gray'} onClick={() => clipboard.copy(citation)} pb={5}>
+                        {clipboard.copied ? <FaCheck size={16} /> : <FaCopy size={16} />}
+                    </ActionIcon>
+                </Tooltip>
+            </Group>
+
             <Code block>
-                {code}
+                {citation}
             </Code>
-        </>
+        </Stack>
     }
 
     const modal = (
         <Modal
         opened={showCitation}
         onClose={() => setShowCitation(false)}
-        title=""
+        title="Paper citation"
         size="xl"
         >
             <Stack>
-                <Text>BibTeX citation</Text>
-                <Tooltip label={clipboard.copied ? 'Copied' : 'Copy'} withArrow position="right">
-                        <ActionIcon color={clipboard.copied ? 'teal' : 'gray'} onClick={() => clipboard.copy(buildBibtex(paper))}>
-                            {clipboard.copied ? <FaCheck size={16} /> : <FaCopy size={16} />}
-                        </ActionIcon>
-                    </Tooltip>
-                <Code block>
-                    {buildBibtex(paper)}
-                </Code>
-                <Text>APA citation</Text>
-                <Code block>
-                    {buildAPA(paper)}
-                </Code>
+                <Citation text="BibTeX" citation={buildBibtex(paper)} />
+                <Citation text="APA" citation={buildAPA(paper)} />
             </Stack>
 
         </Modal>
