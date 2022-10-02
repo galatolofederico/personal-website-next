@@ -1,14 +1,40 @@
-import { Card, Stack, Group, Text, Stepper, CardSection, Grid, Button, Center } from '@mantine/core';
+import { Card, Stack, Group, Text, Stepper, CardSection, Grid, Button, Center, Modal, Code, CopyButton, Tooltip, ActionIcon } from '@mantine/core';
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { FaCheck, FaCopy } from 'react-icons/fa';
+import { useClipboard } from '@mantine/hooks';
 
 import { BiCodeBlock } from "react-icons/bi"
 import { CgFileDocument } from "react-icons/cg"
 import { FiDatabase } from "react-icons/fi"
 import { FaQuoteRight } from "react-icons/fa"
 
+function buildBibtex(paper){
+    let entry = paper.title.split(" ")[0].toLowerCase()+paper.year
+    let author = paper.authors.split(",").join(". and ")
+
+    return `@article{${entry},
+    author={${author}},
+    title={${paper.title}},
+    journal={${paper.journal}},
+    year={${paper.year}},
+    volume={${paper.volume}},
+    pages={${paper.pages}},
+    publisher={${paper.publisher}},
+    doi={${paper.doi}},
+    issn={${paper.issn}},
+}
+`
+}
+
+function buildAPA(paper){
+    return `${paper.authors}. "${paper.title}" ${paper.journal} ${paper.volume} (${paper.year}): ${paper.pages}.`
+}
+
 export const Paper = (paper) => {
     const [bigScreen, setBigScreen] = useState(false)
+    const [showCitation, setShowCitation] = useState(false)
+    const clipboard = useClipboard({ timeout: 500 })
 
     useEffect(() => {
         setBigScreen(window.matchMedia("(min-width: 768px)").matches)
@@ -45,13 +71,53 @@ export const Paper = (paper) => {
     ))
 
     buttons.push((
-        <Button key="cite-button" leftIcon={<FaQuoteRight />} variant="outline" >
+        <Button key="cite-button" leftIcon={<FaQuoteRight />} variant="outline" onClick={() => setShowCitation(true)} >
             Cite paper
         </Button>
     ))
 
 
+    function CodePreview({code}){
+        return <>
+            <Tooltip label={clipboard.copied ? 'Copied' : 'Copy'} withArrow position="right">
+                <ActionIcon color={clipboard.copied ? 'teal' : 'gray'} onClick={() => clipboard.copy(code)}>
+                    {clipboard.copied ? <FaCheck size={16} /> : <FaCopy size={16} />}
+                </ActionIcon>
+            </Tooltip>
+            <Code block>
+                {code}
+            </Code>
+        </>
+    }
+
+    const modal = (
+        <Modal
+        opened={showCitation}
+        onClose={() => setShowCitation(false)}
+        title=""
+        size="xl"
+        >
+            <Stack>
+                <Text>BibTeX citation</Text>
+                <Tooltip label={clipboard.copied ? 'Copied' : 'Copy'} withArrow position="right">
+                        <ActionIcon color={clipboard.copied ? 'teal' : 'gray'} onClick={() => clipboard.copy(buildBibtex(paper))}>
+                            {clipboard.copied ? <FaCheck size={16} /> : <FaCopy size={16} />}
+                        </ActionIcon>
+                    </Tooltip>
+                <Code block>
+                    {buildBibtex(paper)}
+                </Code>
+                <Text>APA citation</Text>
+                <Code block>
+                    {buildAPA(paper)}
+                </Code>
+            </Stack>
+
+        </Modal>
+    )
+
     return <>
+        {modal}
         <Card shadow="sm" radius="md">
             <Card.Section py="lg">
                 <Stack spacing={0}>
