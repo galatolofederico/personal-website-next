@@ -132,7 +132,7 @@ export const Paper = (paper) => {
         opened={showCitation}
         onClose={() => setShowCitation(false)}
         title="Paper citation"
-        size="xl"
+        size="70vw"
         >
             <Stack>
                 <Citation text="BibTeX" citation={buildBibtex(paper)} />
