@@ -33,7 +33,7 @@ function buildBibtex(paper){
     .join(" and ")
 
     const title = (paper.title === undefined) ? "" : paper.title
-    const journal = (paper.journal === undefined) ? "" : paper.journal
+    const journal = (paper.container === undefined) ? "" : paper.container
     const volume = (paper.volume === undefined) ? "" : paper.volume
     const pages = (paper.pages === undefined) ? "" : paper.pages
     const publisher = (paper.publisher === undefined) ? "" : paper.publisher
@@ -55,7 +55,13 @@ function buildBibtex(paper){
 }
 
 function buildAPA(paper){
-    return `${paper.authors}. "${paper.title}" ${paper.journal} ${paper.volume} (${paper.date.year}): ${paper.pages}.`
+    const title = (paper.title === undefined) ? "" : paper.title
+    const journal = (paper.container === undefined) ? "" : paper.container
+    const volume = (paper.volume === undefined) ? "" : paper.volume
+    const pages = (paper.pages === undefined) ? "" : paper.pages
+    const doi = (paper.doi === undefined) ? "" : paper.doi
+
+    return `${paper.authors}. "${title}" ${journal} ${volume} (${paper.date.year}): ${pages} (doi: ${doi}).`
 }
 
 export const Paper = (paper) => {
