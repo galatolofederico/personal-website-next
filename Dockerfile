@@ -1,7 +1,3 @@
-FROM alpine/git:latest as cloner
-WORKDIR /repository
-RUN git clone https://github.com/galatolofederico/me.json.git
-
 FROM node:18.4.0-alpine3.16 as builder
 WORKDIR /website
 COPY package*.json ./
@@ -10,7 +6,7 @@ COPY pages ./pages
 COPY components ./components
 COPY styles ./styles
 COPY next.config.js .
-COPY --from=cloner /repository/me.json ./me.json
+COPY ./me.json ./me.json
 RUN npm run build
 
 FROM bash:latest as compressor
