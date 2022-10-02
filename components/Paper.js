@@ -9,26 +9,54 @@ import { CgFileDocument } from "react-icons/cg"
 import { FiDatabase } from "react-icons/fi"
 import { FaQuoteRight } from "react-icons/fa"
 
+function fixPaper(paper){
+    if(paper.title === undefined) paper.title = "" 
+    if(paper.journal === undefined) paper.journal = "" 
+    if(paper.volume === undefined) paper.volume = "" 
+    if(paper.pages === undefined) paper.pages = "" 
+    if(paper.publisher === undefined) paper.publisher = "" 
+    if(paper.doi === undefined) paper.doi = ""
+    if(paper.issn === undefined) paper.issn = "" 
+    return paper
+}
+
 function buildBibtex(paper){
-    let entry = paper.title.split(" ")[0].toLowerCase()+paper.year
-    let author = paper.authors.split(",").join(". and ")
+    const entry = paper.title.split(" ")[0].toLowerCase()+paper.date.year
+    const author = paper.authors
+    .split(",")
+    .map(name => {
+        let parts = name.split(" ")
+        .map(e => e.replace(/\s/g, ''))
+        .filter(e => e.length > 0)
+        console.log(parts)
+        return parts[parts.length-1]+", "+parts.slice(0, -1).join(" ")
+    })
+    .join(" and ")
+
+    const title = (paper.title === undefined) ? "" : paper.title
+    const journal = (paper.journal === undefined) ? "" : paper.journal
+    const volume = (paper.volume === undefined) ? "" : paper.volume
+    const pages = (paper.pages === undefined) ? "" : paper.pages
+    const publisher = (paper.publisher === undefined) ? "" : paper.publisher
+    const doi = (paper.doi === undefined) ? "" : paper.doi
+    const issn = (paper.issn === undefined) ? "" : paper.issn 
 
     return `@article{${entry},
     author={${author}},
-    title={${paper.title}},
-    journal={${paper.journal}},
-    year={${paper.year}},
-    volume={${paper.volume}},
-    pages={${paper.pages}},
-    publisher={${paper.publisher}},
-    doi={${paper.doi}},
-    issn={${paper.issn}},
+    title={${title}},
+    journal={${journal}},
+    year={${paper.date.year}},
+    volume={${volume}},
+    pages={${pages}},
+    publisher={${publisher}},
+    doi={${doi}},
+    issn={${issn}},
 }
 `
 }
 
 function buildAPA(paper){
-    return `${paper.authors}. "${paper.title}" ${paper.journal} ${paper.volume} (${paper.year}): ${paper.pages}.`
+    return `${paper.authors}. "${paper.title}" ${paper.journal} ${paper.volume} (${paper.date.year}): ${paper.pages}.`
 }
 
 export const Paper = (paper) => {
