@@ -99,14 +99,7 @@ export const Paper = (paper) => {
         >
             <Stack>
                 <Text>BibTeX citation</Text>
-                <Tooltip label={clipboard.copied ? 'Copied' : 'Copy'} withArrow position="right">
-                        <ActionIcon color={clipboard.copied ? 'teal' : 'gray'} onClick={() => clipboard.copy(buildBibtex(paper))}>
-                            {clipboard.copied ? <FaCheck size={16} /> : <FaCopy size={16} />}
-                        </ActionIcon>
-                    </Tooltip>
-                <Code block>
-                    {buildBibtex(paper)}
-                </Code>
+                <CodePreview code={buildBibtex(paper)} />
                 <Text>APA citation</Text>
                 <Code block>
                     {buildAPA(paper)}
