@@ -28,7 +28,6 @@ function buildBibtex(paper){
         let parts = name.split(" ")
         .map(e => e.replace(/\s/g, ''))
         .filter(e => e.length > 0)
-        console.log(parts)
         return parts[parts.length-1]+", "+parts.slice(0, -1).join(" ")
     })
     .join(" and ")
