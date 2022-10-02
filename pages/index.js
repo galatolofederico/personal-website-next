@@ -5,7 +5,7 @@ import { Navbar } from '../components/Navbar';
 import fsPromises from 'fs/promises';
 import path from 'path';
 import Link from 'next/link';
-
+import { useMantineTheme } from '@mantine/core';
 
 function Picture({anagraphic}){
   return <>
@@ -90,21 +90,26 @@ function RecentElements({elements, limit=3, title, element_link, more_link}){
   
   let list = elements.map((e, i) => (
     <Link key={i} href={element_link(e)} passHref>
-      <Text align="center" component="a">{e.title}</Text>
+      <Text align="center" component="a" variant="link" color="dimmed">{e.title}</Text>
     </Link>
   ))
 
+  const theme = useMantineTheme();
+  const borderColor = theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
+
   return <>
     <Card shadow="sm" radius="md" withBorder>
-      <Text weight={500} mb="xs" align="center" size="xl">{title}</Text>
+      <Card.Section pt="sm" pb={0} style={{borderBottom: `1px solid ${borderColor}`}}>
+        <Text weight={500} mb="xs" align="center" size="xl">{title}</Text>
+      </Card.Section>
 
-      <ScrollArea style={{ height: 150 }}>
+      <ScrollArea mt="lg" style={{ height: 150 }}>
         <Stack>
           {list}
         </Stack>
       </ScrollArea>
 
-      <Center>
+      <Center mt="xs">
         <Link href={more_link} pass>
           <Button variant="outline" mt="xl" radius="md">
             See more
