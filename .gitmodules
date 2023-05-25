@@ -1,0 +1,3 @@
+[submodule "me.json"]
+	path = me.json
+	url = https://github.com/galatolofederico/me.json.git
