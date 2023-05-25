@@ -13,6 +13,7 @@ function Picture({anagraphic}){
       <Grid.Col span={5} xs={4} sm={3} md={2} lg={2} xl={1.5}>
         <Image
           radius={1000}
+          fit="container"
           src={anagraphic.picture}
           alt={anagraphic.fullname.first+" "+anagraphic.fullname.middle[0]+". "+anagraphic.fullname.last}
         />
