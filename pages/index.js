@@ -14,7 +14,7 @@ function Picture({anagraphic}){
         <Image
           radius={1000}
           fit="container"
-          src={anagraphic.picture}
+          src="./me.png"
           alt={anagraphic.fullname.first+" "+anagraphic.fullname.middle[0]+". "+anagraphic.fullname.last}
         />
       </Grid.Col>
