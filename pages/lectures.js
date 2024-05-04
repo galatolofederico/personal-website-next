@@ -21,7 +21,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      lectures: mejson.lectures
+      lectures: mejson.courses
     }
   }
 }

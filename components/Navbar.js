@@ -92,7 +92,7 @@ export function Navbar() {
         },
         {
             "link": "/lectures",
-            "label": "Lectures"
+            "label": "Courses"
         }
     ]
     const [opened, { toggle, close }] = useDisclosure(false)

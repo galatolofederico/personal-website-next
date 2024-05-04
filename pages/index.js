@@ -137,6 +137,7 @@ function Home({anagraphic, digitalidentity, publications, projects, lectures}){
           element_link={e => "/publication/"+e.name}
         />
       </Grid.Col>
+      <Grid.Col md={1} span={10}></Grid.Col>
       <Grid.Col md={3} span={10}>
         <RecentElements
           elements={projects}
@@ -144,14 +145,6 @@ function Home({anagraphic, digitalidentity, publications, projects, lectures}){
           limit={4}
           more_link="/projects"
           element_link={e => e.link}
-        />
-      </Grid.Col>
-      <Grid.Col md={3} span={10}>
-        <RecentElements
-          elements={lectures}
-          title="Recent lectures"
-          more_link="/lectures"
-          element_link={e => "/lectures"}
         />
       </Grid.Col>
     </Grid>
